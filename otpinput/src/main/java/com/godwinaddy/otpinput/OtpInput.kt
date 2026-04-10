@@ -1,6 +1,7 @@
 package com.godwinaddy.otpinput
 
 import android.content.Context
+import android.graphics.Typeface
 import android.text.Editable
 import android.text.InputType
 import android.util.AttributeSet
@@ -13,6 +14,7 @@ import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
 import com.google.android.material.card.MaterialCardView
 
@@ -33,6 +35,8 @@ open class OtpInput : LinearLayout {
     private var mTextColor: Int = 0
     private var mTextSize: Int = 0
     private var mTextStyle: Int = 0
+    private var mFontFamilyResId: Int = 0
+    private var mFontFamily: String? = null
     private var mInputType: Int = 1
 
     private var mBorderColor: Int = -1
@@ -100,7 +104,7 @@ open class OtpInput : LinearLayout {
             editText.setBackgroundColor(mInputBackground)
             editText.textSize = mTextSize.toFloat()
             editText.setTextColor(mTextColor)
-            editText.setTypeface(editText.typeface, mTextStyle)
+            editText.applyTypeface()
             editText.hint = mHintText.getOrNull(i - 1)?.toString() ?: ""
 
             when (mInputType) {
@@ -199,6 +203,15 @@ open class OtpInput : LinearLayout {
             0
         )
 
+        mFontFamilyResId = typedArray.getResourceId(
+            R.styleable.OtpInput_android_fontFamily,
+            0
+        )
+
+        if (mFontFamilyResId == 0) {
+            mFontFamily = typedArray.getString(R.styleable.OtpInput_android_fontFamily)
+        }
+
         mInputType = typedArray.getInt(
             R.styleable.OtpInput_inputType,
             OtpInputType.NUMBER.type
@@ -269,6 +282,20 @@ open class OtpInput : LinearLayout {
         if (currentInput >= 0) {
             val v = mListOfEditables[currentInput]
             v.demandFocus()
+        }
+    }
+
+    private fun EditText.applyTypeface() {
+        val baseTypeface = when {
+            mFontFamilyResId != 0 -> ResourcesCompat.getFont(context, mFontFamilyResId)
+            !mFontFamily.isNullOrBlank() -> Typeface.create(mFontFamily!!, Typeface.NORMAL)
+            else -> typeface
+        }
+
+        if (baseTypeface != null) {
+            typeface = Typeface.create(baseTypeface, mTextStyle)
+        } else {
+            setTypeface(typeface, mTextStyle)
         }
     }
 

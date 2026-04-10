@@ -2,6 +2,8 @@
 
 Easy to use and highly customizable OTP Input.
 
+fork of [@virtual-addy](https://github.com/virtual-addy)'s [OtpInput](https://github.com/virtual-addy/OtpInput)
+
 <img src="https://i.ibb.co/mv9313B/Screenshot-1600877653.png" alt="Otp Input Android Screenshot" border="0" height="500">
 
 ## Installation
@@ -29,6 +31,7 @@ dependencies {
         android:id="@+id/otpInput"
         android:layout_width="0dp"
         android:layout_height="80dp"
+        android:fontFamily="@font/noto_serif"
         android:textStyle="normal"
         android:textSize="14sp"
         app:inputType="number"
@@ -77,6 +80,11 @@ dependencies {
     <td>android:textStyle</td>
     <td>bold | normal | italic</td>
     <td>Sets text size for input fields</td>
+  </tr>
+  <tr>
+    <td>android:fontFamily</td>
+    <td>font resource or font family name</td>
+    <td>Sets the typeface used for all OTP input fields</td>
   </tr>
   <tr>
     <td>android:textSize</td>
