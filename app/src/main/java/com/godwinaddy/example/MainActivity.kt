@@ -3,24 +3,25 @@ package com.godwinaddy.example
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import com.godwinaddy.otpinput.OtpInput
+import com.godwinaddy.example.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val otpInput = findViewById<OtpInput>(R.id.otpInput)
-        otpInput.onInputFinishedListener {
+        binding.otpInput.onInputFinishedListener {
             Log.d("Input Finished", it)
         }
 
-        otpInput.focusOtpInput()
-        //otpInput.setHint("!#$%@")
-        otpInput.setStrokeWidth(5)
-        //otpInput.setStrokeColor(ContextCompat.getColor(this, R.color.colorAccent))
-        //otpInput.isCursorVisible = false
+        binding.otpInput.focusOtpInput()
+        // binding.otpInput.setHint("!#$%@")
+        binding.otpInput.setStrokeWidth(5)
+        // binding.otpInput.setStrokeColor(ContextCompat.getColor(this, R.color.colorAccent))
+        // binding.otpInput.isCursorVisible = false
     }
 
 }

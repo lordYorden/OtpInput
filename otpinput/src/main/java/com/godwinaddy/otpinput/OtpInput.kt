@@ -52,16 +52,14 @@ open class OtpInput : LinearLayout {
             }
         }
 
-    var isCursorVisible: Boolean
+    private var isCursorVisible: Boolean
         set(value) {
             mListOfEditables.forEach {
                 it.isCursorVisible = value
             }
         }
         get() {
-            val sum = mListOfEditables.sumBy {
-                if (it.isCursorVisible) 1 else 0
-            }
+            val sum = mListOfEditables.count { it.isCursorVisible }
 
             return sum == mListOfEditables.size
         }
