@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.otpInput.focusOtpInput()
         // binding.otpInput.setHint("!#$%@")
-        binding.otpInput.setStrokeWidth(5)
+        //binding.otpInput.setStrokeWidth(4)
         // binding.otpInput.setStrokeColor(ContextCompat.getColor(this, R.color.colorAccent))
         // binding.otpInput.isCursorVisible = false
     }

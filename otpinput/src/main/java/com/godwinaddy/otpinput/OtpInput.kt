@@ -141,8 +141,9 @@ open class OtpInput : LinearLayout {
 
             if(mBorderColor!= -1) {
                 inputView.strokeColor = mBorderColor
-                inputView.strokeWidth = mBorderWidth
             }
+
+            inputView.strokeWidth = mBorderWidth
 
             if(mHintColor != -1) {
                 editText.setHintTextColor(mHintColor)
