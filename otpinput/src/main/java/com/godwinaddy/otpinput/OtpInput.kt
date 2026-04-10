@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
 import com.google.android.material.card.MaterialCardView
+import dev.lordYorden.otpinput.R
 
 
 open class OtpInput : LinearLayout {
